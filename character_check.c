@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-int main() {
+int main()
+{
     char ch;
-
     printf("Enter any character: ");
     scanf(" %c", &ch);
 
@@ -14,6 +14,5 @@ int main() {
         printf("Number");
     else
         printf("Special symbol");
-
     return 0;
 }
