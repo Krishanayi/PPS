@@ -1,61 +1,64 @@
 #include <stdio.h>
 
-long long int iterativeFactorial(int n)
-{
-    long long int fact = 1;
-    int i;
+// Recursive function
+int factRecursive(int n) {
+    if (n == 0 || n == 1)
+        return 1;
+    else
+        return n * factRecursive(n - 1);
+}
 
-    for(i = 1; i <= n; i++)
-    {
+// Iterative function
+int factIterative(int n) {
+    int fact = 1, i;
+    for (i = 1; i <= n; i++) {
         fact = fact * i;
     }
-
     return fact;
 }
 
-long long int recursiveFactorial(int n)
-{
-    if(n == 0 || n == 1)
-    {
-        return 1;
+int main() {
+    int choice, num;
+
+    printf("=== Factorial Program ===\n");
+    printf("1. Iterative Method\n");
+    printf("2. Recursive Method\n");
+    printf("Enter your choice: ");
+
+    if (scanf("%d", &choice) != 1) {
+        printf("Invalid input!\n");
+        return 0;
     }
-    else
-    {
-        return n * recursiveFactorial(n - 1);
+
+    printf("Enter a non-negative number: ");
+
+    if (scanf("%d", &num) != 1) {
+        printf("Invalid input!\n");
+        return 0;
     }
-}
 
-int main()
-{
-    int n, choice;
-
-    printf("Enter a non-negative integer: ");
-    scanf("%d", &n);
-
-    if(n < 0)
-    {
-        printf("Factorial is not defined for negative numbers.");
+    if (num < 0) {
+        printf("Factorial not defined for negative numbers!\n");
+        return 0;
     }
-    else
-    {
-        printf("\nChoose Method:\n");
-        printf("1. Iterative Method\n");
-        printf("2. Recursive Method\n");
-        printf("Enter your choice: ");
-        scanf("%d", &choice);
 
-        if(choice == 1)
-        {
-            printf("Factorial (Iterative) = %lld", iterativeFactorial(n));
-        }
-        else if(choice == 2)
-        {
-            printf("Factorial (Recursive) = %lld", recursiveFactorial(n));
-        }
-        else
-        {
-            printf("Invalid choice!");
-        }
+    // Limit for int
+    if (num > 12) {
+        printf("Number too large! Enter number <= 12\n");
+        return 0;
+    }
+
+    switch (choice) {
+        case 1:
+            printf("Factorial (Iterative) = %d\n", factIterative(num));
+            break;
+
+        case 2:
+            printf("Factorial (Recursive) = %d\n", factRecursive(num));
+            break;
+
+        default:
+            printf("Invalid choice!\n");
     }
 
     return 0;
